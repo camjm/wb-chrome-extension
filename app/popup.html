@@ -1,7 +1,13 @@
 <!doctype html>
+<!--
+ This page is shown when the Workbench Extensions button is clicked, because the
+ "page_action" field in manifest.json contains the "default_popup" key with
+ value "popup.html".
+ -->
 <html>
   <head>
     <meta charset="utf-8">
+    <title>Workbench Extensions</title>
     <!-- build:css styles/popup-vendor.css -->
     <!-- bower:css -->
     <!-- endbower -->
@@ -12,7 +18,12 @@
   </head>
   <body>
     <h1>Workbench Extensions</h1>
-
+    <button id="goTo">Go To</button>
+    <button id="clearCache">Clear Cache</button>
+    <div>
+      Workbench Version
+      <span id="version">4.2.1</span>
+    </div>
     <!-- build:js scripts/popup-vendor.js -->
     <!-- bower:js -->
     <!-- endbower -->

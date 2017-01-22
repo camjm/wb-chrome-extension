@@ -11,6 +11,7 @@ gulp.task('extras', () => {
   return gulp.src([
     'app/*.*',
     'app/_locales/**',
+    'app/commands/**',
     '!app/scripts.babel',
     '!app/*.json',
     '!app/*.html',
@@ -67,9 +68,7 @@ gulp.task('chromeManifest', () => {
       buildnumber: true,
       background: {
         target: 'scripts/background.js',
-        exclude: [
-          'scripts/chromereload.js'
-        ]
+        exclude: []
       }
   }))
   .pipe($.if('*.css', $.cleanCss({compatibility: '*'})))
