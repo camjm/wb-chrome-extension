@@ -4,6 +4,7 @@ import gulpLoadPlugins from 'gulp-load-plugins';
 import del from 'del';
 import runSequence from 'run-sequence';
 import {stream as wiredep} from 'wiredep';
+import {fs as fs} from 'fs';
 
 const $ = gulpLoadPlugins();
 
@@ -115,11 +116,27 @@ gulp.task('wiredep', () => {
     .pipe(gulp.dest('app'));
 });
 
-gulp.task('package', function () {
+gulp.task('zip', function () {
   var manifest = require('./dist/manifest.json');
   return gulp.src('dist/**')
-      .pipe($.zip('wb chrome extension-' + manifest.version + '.zip'))
+      .pipe($.zip('workbench-' + manifest.version + '.zip'))
       .pipe(gulp.dest('package'));
+});
+
+gulp.task('crx', function() {
+  var fs = require("fs");
+  var crx = require('gulp-crx-pack');
+  var manifest = require('./dist/manifest.json');
+  return gulp.src('dist')
+    .pipe(crx({
+      privateKey: fs.readFileSync('dist.pem', 'utf8'),
+      filename: 'workbench-' + manifest.version + '.crx'
+    }))
+    .pipe(gulp.dest('package'));
+});
+
+gulp.task('package', ['build'], (cb) => {
+  runSequence('zip', 'crx', cb)
 });
 
 gulp.task('build', (cb) => {
