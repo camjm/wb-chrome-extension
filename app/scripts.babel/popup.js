@@ -1,25 +1,30 @@
 'use strict';
 
-document.addEventListener('DOMContentLoaded', function() {
+(function(tab){
 
-  // Go To Log button
-  var goToButton = document.getElementById('goTo');
-  goToButton.addEventListener('click', function(){
-    chrome.tabs.executeScript({
-      file: 'commands/gotoLog.js'
-    }, function(result) {
-      console.log('go to successful!');
+  function execute(file, callback) {
+    tab.executeScript({
+      file: 'commands/' + file
+    }, callback);
+  }
+
+  function attach(element, type, listener) {
+    element.addEventListener(type, listener, false);
+  }
+
+  function attachCommand(id, file) {
+    var button = document.getElementById(id);
+    attach(button, 'click', function() {
+      execute(file, function(result) {
+        console.log('command successful!');
+      });
     });
-  }, false);
+  }
 
-  // Clear Cache button
-  var clearCacheButton = document.getElementById('clearCache');
-  clearCacheButton.addEventListener('click', function(){
-    chrome.tabs.executeScript({
-      file: 'commands/clearCache.js'
-    }, function(result) {
-      console.log('clear cache successful!');
-    });
-  }, false);
+  // Attach event handlers to buttons
+  attach(document, 'DOMContentLoaded', function() {
+    attachCommand('gotoLog', 'gotoLog.js');
+    attachCommand('clearCache', 'clearCache.js');
+  });
 
-}, false);
+})(chrome.tabs);
