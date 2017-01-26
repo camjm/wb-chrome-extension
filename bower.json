@@ -2,7 +2,10 @@
   "name": "wb-chrome-extension",
   "private": true,
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "angular": "^1.6.1",
+    "angular-material": "^1.1.1"
+  },
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "^3.2.0"
