@@ -1,11 +1,24 @@
 'use strict';
 
-chrome.runtime.onInstalled.addListener(details => {
-  console.log('previousVersion', details.previousVersion);
-});
+(function(runtime, pageAction) {
 
-chrome.tabs.onUpdated.addListener(tabId => {
-  chrome.pageAction.show(tabId);
-});
+  // When the extension is installed or upgraded...
+  runtime.onInstalled.addListener(function() {
+    // Replace all the rules...
+    pageAction.onPageChanged.removeRules(undefined, function() {
+      /// With a new rule...
+      pageAction.onPageChanged.addRules([{
+        // That fires when visiting an instance of the Workbench application...
+        conditions: [
+          new pageAction.PageStateMatcher({
+            pageUrl: { pathSuffix: '/Workbench.aspx' },
+            css: [ 'html[ng-app=wbApp]' ]
+          })
+        ],
+        /// And enables the Workbench extension page action
+        actions: [ new pageAction.ShowPageAction() ]
+      }]);
+    });
+  });
 
-console.log('\'Allo \'Allo! Event Page for Page Action');
+})(chrome.runtime, chrome.declarativeContent);
