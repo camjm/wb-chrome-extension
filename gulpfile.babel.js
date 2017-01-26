@@ -8,13 +8,12 @@ import {stream as wiredep} from 'wiredep';
 const $ = gulpLoadPlugins();
 
 var fs = require("fs");
-var manifest = require('./dist/manifest.json');
 
 gulp.task('extras', () => {
   return gulp.src([
     'app/*.*',
     'app/_locales/**',
-    'app/commands/**',
+    'app/scripts/commands/**',
     '!app/scripts.babel',
     '!app/*.json',
     '!app/*.html',
@@ -119,16 +118,20 @@ gulp.task('wiredep', () => {
 });
 
 gulp.task('zip', function () {
+  var manifest = require('./dist/manifest.json');
+  var packageName = 'workbench-' + manifest.version;
   return gulp.src('dist/**')
-      .pipe($.zip('workbench-' + manifest.version + '.zip'))
+      .pipe($.zip(packageName + '.zip'))
       .pipe(gulp.dest('package'));
 });
 
 gulp.task('crx', function() {
+  var manifest = require('./dist/manifest.json');
+  var packageName = 'workbench-' + manifest.version;
   return gulp.src('dist')
     .pipe($.crxPack({
       privateKey: fs.readFileSync('dist.pem', 'utf8'),
-      filename: 'workbench-' + manifest.version + '.crx'
+      filename: packageName + '.crx'
     }))
     .pipe(gulp.dest('package'));
 });

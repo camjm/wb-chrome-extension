@@ -4,7 +4,7 @@
 
   function execute(file, callback) {
     tab.executeScript({
-      file: 'commands/' + file
+      file: 'scripts/commands/' + file
     }, callback);
   }
 
