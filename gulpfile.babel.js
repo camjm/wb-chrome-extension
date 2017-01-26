@@ -7,10 +7,14 @@ import {stream as wiredep} from 'wiredep';
 
 const $ = gulpLoadPlugins();
 
+var fs = require("fs");
+var manifest = require('./dist/manifest.json');
+
 gulp.task('extras', () => {
   return gulp.src([
     'app/*.*',
     'app/_locales/**',
+    'app/commands/**',
     '!app/scripts.babel',
     '!app/*.json',
     '!app/*.html',
@@ -67,9 +71,7 @@ gulp.task('chromeManifest', () => {
       buildnumber: true,
       background: {
         target: 'scripts/background.js',
-        exclude: [
-          'scripts/chromereload.js'
-        ]
+        exclude: []
       }
   }))
   .pipe($.if('*.css', $.cleanCss({compatibility: '*'})))
@@ -116,11 +118,23 @@ gulp.task('wiredep', () => {
     .pipe(gulp.dest('app'));
 });
 
-gulp.task('package', function () {
-  var manifest = require('./dist/manifest.json');
+gulp.task('zip', function () {
   return gulp.src('dist/**')
-      .pipe($.zip('wb chrome extension-' + manifest.version + '.zip'))
+      .pipe($.zip('workbench-' + manifest.version + '.zip'))
       .pipe(gulp.dest('package'));
+});
+
+gulp.task('crx', function() {
+  return gulp.src('dist')
+    .pipe($.crxPack({
+      privateKey: fs.readFileSync('dist.pem', 'utf8'),
+      filename: 'workbench-' + manifest.version + '.crx'
+    }))
+    .pipe(gulp.dest('package'));
+});
+
+gulp.task('package', ['build'], (cb) => {
+  runSequence('zip', 'crx', cb)
 });
 
 gulp.task('build', (cb) => {
