@@ -4,9 +4,11 @@ import gulpLoadPlugins from 'gulp-load-plugins';
 import del from 'del';
 import runSequence from 'run-sequence';
 import {stream as wiredep} from 'wiredep';
-import {fs as fs} from 'fs';
 
 const $ = gulpLoadPlugins();
+
+var fs = require("fs");
+var manifest = require('./dist/manifest.json');
 
 gulp.task('extras', () => {
   return gulp.src([
@@ -117,18 +119,14 @@ gulp.task('wiredep', () => {
 });
 
 gulp.task('zip', function () {
-  var manifest = require('./dist/manifest.json');
   return gulp.src('dist/**')
       .pipe($.zip('workbench-' + manifest.version + '.zip'))
       .pipe(gulp.dest('package'));
 });
 
 gulp.task('crx', function() {
-  var fs = require("fs");
-  var crx = require('gulp-crx-pack');
-  var manifest = require('./dist/manifest.json');
   return gulp.src('dist')
-    .pipe(crx({
+    .pipe($.crxPack({
       privateKey: fs.readFileSync('dist.pem', 'utf8'),
       filename: 'workbench-' + manifest.version + '.crx'
     }))
