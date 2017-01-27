@@ -10,29 +10,44 @@
     <title>Workbench Extensions</title>
     <!-- build:css styles/popup-vendor.css -->
     <!-- bower:css -->
-      <link href="bower_components/angular-material/angular-material.css" rel="stylesheet">
+    <link href="bower_components/angular-material/angular-material.css" rel="stylesheet">
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css styles/main.css -->
     <link href="styles/main.css" rel="stylesheet">
     <!-- endbuild -->
   </head>
-  <body>
-    <h1>Workbench Extensions</h1>
-    <button id="gotoLog">Go To Log</button>
-    <button id="clearCache">Clear Cache</button>
-    <div>
-      Workbench Version
-      <span id="version">4.2.1</span>
-    </div>
+  <body ng-app="workbench.popup" layout="column" layout-fill>
+    <header>
+      <md-toolbar class='md-medium-tall'>
+          <div class="md-toolbar-tools">
+            <h1>Workbench Extensions</h1>
+          </div>
+        </md-toolbar>
+    </header>
+    <main ng-controller="PopupController" class='md-padding' layout="row" flex>
+      <div flex>
+        <md-button id="gotoLog" class="md-raised md-primary">Go To Log</md-button>
+        <md-button id="clearCache" class="md-raised md-primary">Clear Cache</md-button>
+      </div>
+    </main>
+    <footer>
+        <div layout="row" layout-align="center center">
+            <h3>Workbench Extensions</h2>
+            <span id="version">4.2.1</span>
+        </div>
+    </footer>
     <!-- build:js scripts/popup-vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:js scripts/popup.js -->
-    <script src="scripts/popup.js"></script>
+    <script src="scripts/popup/app.js"></script>
+    <script src="scripts/popup/controller.js"></script>
     <!-- endbuild -->
   </body>
 </html>
