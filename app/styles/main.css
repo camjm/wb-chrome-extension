@@ -1,6 +1,9 @@
 body {
   min-width: 350px;
-  min-height: 500px;
+}
+
+.tabs {
+  height: 400px;
 }
 
 footer {

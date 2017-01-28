@@ -1,7 +1,18 @@
-angular.module('workbench.popup').controller('LocationsController', ['$scope', function($scope){
-  $scope.locations = [
-    'location 1',
-    'location 2',
-    'location 3'
-  ];
+angular.module('workbench.popup').controller('LocationsController', ['$scope', 'locationService', function($scope, locationService){
+
+  $scope.locations = [{
+    label: 'Application Log',
+    location: '#/Admin/Log.aspx'
+  },{
+    label: 'Application Cache',
+    location: '#/Admin/Cache.aspx'
+  },{
+    label: 'System Information',
+    location: '#/Admin/Log.aspx'
+  }];
+
+  $scope.gotoLocation = function(location) {
+      console.log(location);
+  };
+
 }]);

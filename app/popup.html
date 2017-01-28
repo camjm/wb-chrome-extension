@@ -27,14 +27,16 @@
     <header ng-include="'views/popup/_header.html'"></header>
 
     <!-- Tabs -->
-    <md-tabs
-      md-stretch-tabs
-      md-selected="selectedIndex">
-      <md-tab label="locations" ui-sref="locations" md-active="isActive('locations')"></md-tab>
-      <md-tab label="commands" ui-sref="commands" md-active="isActive('commands')"></md-tab>
-      <md-tab label="dev" ui-sref="development" md-active="isActive('development')"></md-tab>
-    </md-tabs>
-    <div ui-view="tab" class="tab" flex></div>
+    <div class="tabs">
+      <md-tabs
+        md-stretch-tabs
+        md-selected="selectedIndex">
+        <md-tab label="locations" ui-sref="locations" md-active="isActive('locations')"></md-tab>
+        <md-tab label="commands" ui-sref="commands" md-active="isActive('commands')"></md-tab>
+        <md-tab label="dev" ui-sref="development" md-active="isActive('development')"></md-tab>
+      </md-tabs>
+      <div ui-view="tab" class="tab"></div>
+    </div>
 
     <!-- Footer -->
     <footer ng-include="'views/popup/_footer.html'"></footer>
@@ -55,6 +57,9 @@
     <script src="scripts/popup/controllers/locationsController.js"></script>
     <script src="scripts/popup/controllers/commandsController.js"></script>
     <script src="scripts/popup/controllers/developmentController.js"></script>
+    <script src="scripts/popup/services/tabService.js"></script>
+    <script src="scripts/popup/services/commandService.js"></script>
+    <script src="scripts/popup/services/locationService.js"></script>
     <!-- endbuild -->
   </body>
 </html>

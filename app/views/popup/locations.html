@@ -1,4 +1,8 @@
 <div>
-  <h3>Locations</h3>
-  <p ng-repeat="location in locations">{{ location }}</p>
+  <md-button
+    class="md-raised md-primary"
+    ng-repeat="location in locations"
+    ng-click="gotoLocation(location.location)">
+    {{ location.label }}
+  </md-button>
 </div>

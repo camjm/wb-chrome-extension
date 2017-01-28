@@ -1,4 +1,8 @@
 <div>
-  <h3>Commands</h3>
-  <p ng-repeat="command in commands">{{ command }}</p>
+  <md-button
+    class="md-raised md-primary"
+    ng-repeat="command in commands"
+    ng-click="executeCommand(command.command)">
+    {{ command.label }}
+  </md-button>
 </div>
