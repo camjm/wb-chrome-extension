@@ -18,29 +18,31 @@
     <link href="styles/main.css" rel="stylesheet">
     <!-- endbuild -->
   </head>
-  <body ng-app="workbench.popup" ng-cloak layout="column" layout-fill>
-    <header>
-      <md-toolbar class='md-medium-tall'>
-          <div class="md-toolbar-tools">
-            <h1>Workbench Extensions</h1>
-          </div>
-        </md-toolbar>
-    </header>
-    <main ng-controller="PopupController" class='md-padding' layout="row" flex>
-      <div flex>
-        <md-button id="gotoLog" class="md-raised md-primary">Go To Log</md-button>
-        <md-button id="clearCache" class="md-raised md-primary">Clear Cache</md-button>
-      </div>
-    </main>
-    <footer>
-        <div layout="row" layout-align="center center">
-            <h3>Workbench Extensions</h2>
-            <span id="version">4.2.1</span>
-        </div>
-    </footer>
+  <body
+    ng-cloak
+    ng-app="workbench.popup"
+    ng-controller="PopupController">
+
+    <!-- Header -->
+    <header ng-include="'views/popup/_header.html'"></header>
+
+    <!-- Tabs -->
+    <md-tabs
+      md-stretch-tabs
+      md-selected="selectedIndex">
+      <md-tab label="locations" ui-sref="locations" md-active="isActive('locations')"></md-tab>
+      <md-tab label="commands" ui-sref="commands" md-active="isActive('commands')"></md-tab>
+      <md-tab label="dev" ui-sref="development" md-active="isActive('development')"></md-tab>
+    </md-tabs>
+    <div ui-view="tab" class="tab" flex></div>
+
+    <!-- Footer -->
+    <footer ng-include="'views/popup/_footer.html'"></footer>
+
     <!-- build:js scripts/popup-vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-aria/angular-aria.js"></script>
     <script src="bower_components/angular-messages/angular-messages.js"></script>
@@ -49,7 +51,10 @@
     <!-- endbuild -->
     <!-- build:js scripts/popup.js -->
     <script src="scripts/popup/app.js"></script>
-    <script src="scripts/popup/controller.js"></script>
+    <script src="scripts/popup/controllers/popupController.js"></script>
+    <script src="scripts/popup/controllers/locationsController.js"></script>
+    <script src="scripts/popup/controllers/commandsController.js"></script>
+    <script src="scripts/popup/controllers/developmentController.js"></script>
     <!-- endbuild -->
   </body>
 </html>
