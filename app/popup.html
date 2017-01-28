@@ -7,6 +7,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport", content="width=device-width, initial-scale=1">
     <title>Workbench Extensions</title>
     <!-- build:css styles/popup-vendor.css -->
     <!-- bower:css -->
@@ -17,7 +18,7 @@
     <link href="styles/main.css" rel="stylesheet">
     <!-- endbuild -->
   </head>
-  <body ng-app="workbench.popup" layout="column" layout-fill>
+  <body ng-app="workbench.popup" ng-cloak layout="column" layout-fill>
     <header>
       <md-toolbar class='md-medium-tall'>
           <div class="md-toolbar-tools">
@@ -40,9 +41,10 @@
     <!-- build:js scripts/popup-vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-material/angular-material.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:js scripts/popup.js -->
