@@ -3,7 +3,7 @@ angular.module('workbench.popup', [
   'ui.router'
 ]).config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
-  $urlRouterProvider.otherwise('commands');
+  $urlRouterProvider.otherwise('locations');
 
   $stateProvider
     .state('locations', {
