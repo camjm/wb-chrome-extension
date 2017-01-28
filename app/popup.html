@@ -19,27 +19,48 @@
     <!-- endbuild -->
   </head>
   <body
-    ng-cloak
     ng-app="workbench.popup"
     ng-controller="PopupController">
 
     <!-- Header -->
-    <header ng-include="'views/popup/_header.html'"></header>
+    <md-toolbar md-scroll-shrink="">
+      <div class="md-toolbar-tools">
+        Workbench Extensions
+      </div>
+    </md-toolbar>
 
-    <!-- Tabs -->
-    <div class="tabs">
-      <md-tabs
-        md-stretch-tabs
-        md-selected="selectedIndex">
-        <md-tab label="locations" ui-sref="locations" md-active="isActive('locations')"></md-tab>
-        <md-tab label="commands" ui-sref="commands" md-active="isActive('commands')"></md-tab>
-        <md-tab label="dev" ui-sref="development" md-active="isActive('development')"></md-tab>
-      </md-tabs>
-      <div ui-view="tab" class="tab"></div>
-    </div>
+    <!-- List -->
+    <md-list
+      ng-cloak
+      ng-controller="PopupController">
+
+      <md-subheader class="md-primary">Locations</md-subheader>
+
+      <md-list-item
+        class="md-secondary"
+        ng-repeat="location in locations"
+        ng-click="gotoLocation(location.location)">
+        <span flex="10"></span>
+        <p>{{ location.label }}</p>
+      </md-list-item>
+
+      <md-subheader class="md-primary">Commands</md-subheader>
+
+      <md-list-item
+        ng-repeat="command in commands"
+        ng-click="executeCommand(command.command)">
+        <span flex="10"></span>
+        <p>{{ command.label }}</p>
+      </md-list-item>
+
+    </md-list>
 
     <!-- Footer -->
-    <footer ng-include="'views/popup/_footer.html'"></footer>
+    <div
+      layout="row"
+      layout-align="center center">
+      <span id="version">version 0.0.3</span>
+    </div>
 
     <!-- build:js scripts/popup-vendor.js -->
     <!-- bower:js -->
@@ -53,10 +74,7 @@
     <!-- endbuild -->
     <!-- build:js scripts/popup.js -->
     <script src="scripts/popup/app.js"></script>
-    <script src="scripts/popup/controllers/popupController.js"></script>
-    <script src="scripts/popup/controllers/locationsController.js"></script>
-    <script src="scripts/popup/controllers/commandsController.js"></script>
-    <script src="scripts/popup/controllers/developmentController.js"></script>
+    <script src="scripts/popup/controller.js"></script>
     <script src="scripts/popup/services/tabService.js"></script>
     <script src="scripts/popup/services/commandService.js"></script>
     <script src="scripts/popup/services/locationService.js"></script>
