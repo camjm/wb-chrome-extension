@@ -2,7 +2,11 @@ angular.module('workbench.popup').factory('commandService', ['browserTab', funct
 
   return {
     execute: function(command) {
-      console.log(command + ' command executed');
+      browserTab.executeScript({
+        code: command
+      }, function(){
+        console.log('command callback!');
+      });
     }
   };
 

@@ -21,13 +21,13 @@ angular.module('workbench.popup').controller('PopupController', [
 
     $scope.commands = [{
       label: 'Clear Cache',
-      command: 'clear cache'
+      command: 'window.ClearCache();'
     },{
       label: 'Restart',
-      command: 'restart'
+      command: 'window.ClearCache();'
     },{
       label: 'Install',
-      command: 'install'
+      command: 'window.ClearCache();'
     }];
 
     $scope.executeCommand = function(command) {

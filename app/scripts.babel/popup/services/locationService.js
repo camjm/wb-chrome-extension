@@ -2,7 +2,11 @@ angular.module('workbench.popup').factory('locationService', ['browserTab', func
 
   return {
     goto: function(location) {
-      console.log('going to ' + location);
+      browserTab.executeScript({
+        code: 'window.location.href="' + location + '";'
+      }, function(){
+        console.log('location callback!');
+      });
     }
   };
 
