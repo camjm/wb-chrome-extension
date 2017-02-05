@@ -11,7 +11,7 @@ angular.module('workbench.popup').controller('PopupController', [
       location: '#/Admin/Cache.aspx'
     }, {
       label: 'System Information',
-      location: '#/Admin/Log.aspx'
+      location: '#/Admin/SystemInfo.aspx'
     }];
 
     $scope.gotoLocation = function(location) {
