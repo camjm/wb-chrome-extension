@@ -1,28 +1,50 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Workbench Options</title>
-    <!-- build:css styles/options-vendor.css -->
-    <!-- bower:css -->
-    <link href="bower_components/angular-material/angular-material.css" rel="stylesheet">
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:css styles/main.css -->
-    <link href="styles/main.css" rel="stylesheet">
-    <!-- endbuild -->
-  </head>
-  <body>
-    <h1>Workbench Options</h1>
-    <!-- build:js scripts/options-vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-material/angular-material.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:js scripts/options.js -->
-    <script src="scripts/options/app.js"></script>
-    <script src="scripts/options/controller.js"></script>
-    <!-- endbuild -->
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" , content="width=device-width, initial-scale=1">
+  <title>Workbench Extensions</title>
+  <!-- build:css styles/options-vendor.css -->
+  <!-- bower:css -->
+  <link href="bower_components/angular-material/angular-material.css" rel="stylesheet">
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css styles/main.css -->
+  <link href="styles/main.css" rel="stylesheet">
+  <!-- endbuild -->
+</head>
+
+<body ng-app="workbench.options" ng-controller="OptionsController">
+
+  <!-- Header -->
+  <md-toolbar md-scroll-shrink="">
+    <div class="md-toolbar-tools">
+      Workbench Extensions
+    </div>
+  </md-toolbar>
+
+  <!-- TODO: Options -->
+
+  <!-- Footer -->
+  <footer class="container" layout="row" layout-align="center center">
+    <span class="md-caption" id="version">version 0.0.3</span>
+  </footer>
+
+  <!-- build:js scripts/options-vendor.js -->
+  <!-- bower:js -->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-aria/angular-aria.js"></script>
+  <script src="bower_components/angular-messages/angular-messages.js"></script>
+  <script src="bower_components/angular-material/angular-material.js"></script>
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:js scripts/options.js -->
+  <script src="scripts/options/app.js"></script>
+  <script src="scripts/options/service.js"></script>
+  <script src="scripts/options/controller.js"></script>
+  <!-- endbuild -->
+</body>
+
 </html>

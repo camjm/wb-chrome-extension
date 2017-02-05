@@ -1,1 +1,3 @@
-angular.module('workbench.options', []);
+angular.module('workbench.options', [
+  'ngMaterial'
+]);

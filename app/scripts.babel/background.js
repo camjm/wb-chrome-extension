@@ -11,12 +11,14 @@
         // That fires when visiting an instance of the Workbench application...
         conditions: [
           new pageAction.PageStateMatcher({
-            pageUrl: { pathSuffix: '/Workbench.aspx' },
-            css: [ 'html[ng-app=wbApp]' ]
+            pageUrl: {
+              pathSuffix: '/Workbench.aspx'
+            },
+            css: ['html[ng-app=wbApp]']
           })
         ],
         /// And enables the Workbench extension page action
-        actions: [ new pageAction.ShowPageAction() ]
+        actions: [new pageAction.ShowPageAction()]
       }]);
     });
   });

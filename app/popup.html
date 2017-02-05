@@ -5,78 +5,67 @@
  value "popup.html".
  -->
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport", content="width=device-width, initial-scale=1">
-    <title>Workbench Extensions</title>
-    <!-- build:css styles/popup-vendor.css -->
-    <!-- bower:css -->
-    <link href="bower_components/angular-material/angular-material.css" rel="stylesheet">
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:css styles/main.css -->
-    <link href="styles/main.css" rel="stylesheet">
-    <!-- endbuild -->
-  </head>
-  <body
-    ng-app="workbench.popup"
-    ng-controller="PopupController">
 
-    <!-- Header -->
-    <md-toolbar md-scroll-shrink="">
-      <div class="md-toolbar-tools">
-        Workbench Extensions
-      </div>
-    </md-toolbar>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" , content="width=device-width, initial-scale=1">
+  <title>Workbench Extensions</title>
+  <!-- build:css styles/popup-vendor.css -->
+  <!-- bower:css -->
+  <link href="bower_components/angular-material/angular-material.css" rel="stylesheet">
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css styles/main.css -->
+  <link href="styles/main.css" rel="stylesheet">
+  <!-- endbuild -->
+</head>
 
-    <!-- List -->
-    <md-list
-      ng-cloak
-      ng-controller="PopupController">
-      <md-subheader class="md-primary">Locations</md-subheader>
-      <md-list-item
-        ng-repeat="location in locations"
-        ng-click="gotoLocation(location.location)">
-        <span flex="20"></span>
-        <p>{{ location.label }}</p>
-        <md-divider md-inset ng-if="!$last"></md-divider>
-      </md-list-item>
-      <md-divider></md-divider>
-      <md-subheader class="md-primary">Commands</md-subheader>
-      <md-list-item
-        ng-repeat="command in commands"
-        ng-click="executeCommand(command.command)">
-        <span flex="20"></span>
-        <p>{{ command.label }}</p>
-        <md-divider md-inset ng-if="!$last"></md-divider>
-      </md-list-item>
-      <md-divider></md-divider>
-    </md-list>
+<body ng-app="workbench.popup" ng-controller="PopupController">
 
-    <!-- Footer -->
-    <footer
-      class="container"
-      layout="row"
-      layout-align="center center">
-      <span class="md-caption" id="version">version 0.0.3</span>
-    </footer>
+  <!-- Header -->
+  <md-toolbar md-scroll-shrink="">
+    <div class="md-toolbar-tools">
+      Workbench Extensions
+    </div>
+  </md-toolbar>
 
-    <!-- build:js scripts/popup-vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-aria/angular-aria.js"></script>
-    <script src="bower_components/angular-messages/angular-messages.js"></script>
-    <script src="bower_components/angular-material/angular-material.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:js scripts/popup.js -->
-    <script src="scripts/popup/app.js"></script>
-    <script src="scripts/popup/controller.js"></script>
-    <script src="scripts/popup/services/tabService.js"></script>
-    <script src="scripts/popup/services/commandService.js"></script>
-    <script src="scripts/popup/services/locationService.js"></script>
-    <!-- endbuild -->
-  </body>
+  <!-- List -->
+  <md-list ng-cloak ng-controller="PopupController">
+    <md-subheader class="md-primary">Locations</md-subheader>
+    <md-list-item ng-repeat="location in locations" ng-click="gotoLocation(location.location)">
+      <span flex="20"></span>
+      <p>{{ location.label }}</p>
+      <md-divider md-inset ng-if="!$last"></md-divider>
+    </md-list-item>
+    <md-divider></md-divider>
+    <md-subheader class="md-primary">Commands</md-subheader>
+    <md-list-item ng-repeat="command in commands" ng-click="executeCommand(command.command)">
+      <span flex="20"></span>
+      <p>{{ command.label }}</p>
+      <md-divider md-inset ng-if="!$last"></md-divider>
+    </md-list-item>
+    <md-divider></md-divider>
+  </md-list>
+
+  <!-- Footer -->
+  <footer class="container" layout="row" layout-align="center center">
+    <span class="md-caption" id="version">version 0.0.3</span>
+  </footer>
+
+  <!-- build:js scripts/popup-vendor.js -->
+  <!-- bower:js -->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-aria/angular-aria.js"></script>
+  <script src="bower_components/angular-messages/angular-messages.js"></script>
+  <script src="bower_components/angular-material/angular-material.js"></script>
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:js scripts/popup.js -->
+  <script src="scripts/popup/app.js"></script>
+  <script src="scripts/popup/service.js"></script>
+  <script src="scripts/popup/controller.js"></script>
+  <!-- endbuild -->
+</body>
+
 </html>
