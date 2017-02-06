@@ -1,7 +1,7 @@
 angular.module('workbench.popup').controller('PopupController', [
   '$scope',
   'popupService',
-  function($scope, tabService) {
+  function($scope, popupService) {
 
     $scope.locations = [{
       label: 'Application Log',
@@ -15,7 +15,7 @@ angular.module('workbench.popup').controller('PopupController', [
     }];
 
     $scope.gotoLocation = function(location) {
-      tabService.goto(location);
+      popupService.goto(location);
     };
 
     $scope.commands = [{
@@ -34,7 +34,7 @@ angular.module('workbench.popup').controller('PopupController', [
 
     $scope.executeCommand = function(command) {
       command.processing = true;
-      tabService.execute(command.message, function() {
+      popupService.execute(command.message, function() {
         $scope.$apply(function(response){
           command.processing = false;
         })
