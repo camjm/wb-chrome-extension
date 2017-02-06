@@ -1,4 +1,5 @@
 var commands = {
+
   cache: function(callback) {
     //TODO:
     console.log('clearing...');
@@ -6,6 +7,7 @@ var commands = {
       callback('clear cache success!');
     }, 2000);
   },
+
   restart: function(callback) {
     //TODO:
     console.log('restarting...');
@@ -13,6 +15,7 @@ var commands = {
       callback('restart success!');
     }, 2000);
   },
+
   install: function(callback) {
     //TODO:
     console.log('installing...');
@@ -20,10 +23,12 @@ var commands = {
       callback('install success!');
     }, 2000);
   }
+
 };
 
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
   if (typeof commands[message] !== 'function') return false;
   commands[message](sendResponse);
+  // respond asynchronously
   return true;
 });
