@@ -1,6 +1,6 @@
 angular.module('workbench.popup').controller('PopupController', [
   '$scope',
-  'tabService',
+  'popupService',
   function($scope, tabService) {
 
     $scope.locations = [{
@@ -15,23 +15,30 @@ angular.module('workbench.popup').controller('PopupController', [
     }];
 
     $scope.gotoLocation = function(location) {
-      var code = 'window.location.href="' + location + '";'
-      tabService.execute(code);
+      tabService.goto(location);
     };
 
     $scope.commands = [{
       label: 'Clear Cache',
-      command: 'window.ClearCache();'
+      message: 'cache',
+      processing: false
     }, {
       label: 'Restart',
-      command: 'window.ClearCache();'
+      message: 'restart',
+      processing: false
     }, {
       label: 'Install',
-      command: 'window.ClearCache();'
+      message: 'install',
+      processing: false
     }];
 
     $scope.executeCommand = function(command) {
-      tabService.execute(command);
+      command.processing = true;
+      tabService.execute(command.message, function() {
+        $scope.$apply(function(response){
+          command.processing = false;
+        })
+      });
     }
 
   }

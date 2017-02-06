@@ -15,9 +15,24 @@
     ],
     "persistent": false
   },
+  "content_scripts": [
+   {
+     "matches": [
+       "http://*/*Workbench.aspx",
+       "https://*/*Workbench.aspx"
+     ],
+     "js": [
+       "scripts/contentscript.js"
+     ],
+     "run_at": "document_end",
+     "all_frames": false
+   }
+ ],
   "permissions": [
     "activeTab",
-    "declarativeContent"
+    "declarativeContent",
+    "http://*/*Workbench.aspx",
+    "https://*/*Workbench.aspx"
   ],
   "options_ui": {
     "page": "options.html",
