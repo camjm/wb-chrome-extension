@@ -43,7 +43,7 @@
       console.log('restarting...');
       setTimeout(function() {
         callback('restart success!');
-      }, 2000);
+      }, 5000);
     },
 
     install: function(callback) {
@@ -51,7 +51,7 @@
       console.log('installing...');
       setTimeout(function() {
         callback('install success!');
-      }, 2000);
+      }, 7000);
     }
 
   };
